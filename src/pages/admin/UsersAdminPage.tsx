@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { useDepartments } from "@/hooks/useLookups";
 import type { AppRole, DocumentPermission, Profile, VisibilityScope } from "@/lib/database.types";
+import { CreateUserDialog } from "@/components/admin/CreateUserDialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -42,13 +43,16 @@ export function UsersAdminPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Usuarios y permisos</h1>
-        <p className="text-muted-foreground">
-          {isAdmin
-            ? "Como administrador general puedes gestionar rol, departamento y permisos de cualquier persona."
-            : "Como administrador de tu departamento puedes ajustar permisos de documentos, comentarios y visibilidad para tu gente."}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Usuarios y permisos</h1>
+          <p className="text-muted-foreground">
+            {isAdmin
+              ? "Como administrador general puedes gestionar rol, departamento y permisos de cualquier persona."
+              : "Como administrador de tu departamento puedes ajustar permisos de documentos, comentarios y visibilidad para tu gente."}
+          </p>
+        </div>
+        {isAdmin && <CreateUserDialog onCreated={load} />}
       </div>
 
       <Card>
