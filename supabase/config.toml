@@ -39,3 +39,9 @@ verify_jwt = false
 
 [functions.check-sanctions-list]
 verify_jwt = true
+
+[functions.propose-requirements]
+verify_jwt = true
+
+[functions.check-case-requirements]
+verify_jwt = false
